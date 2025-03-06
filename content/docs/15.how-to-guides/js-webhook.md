@@ -1,5 +1,5 @@
 ---
-title: Connect JavaScript Apps to Kestra
+title: Connect Web Apps to Kestra
 icon: /docs/icons/nodejs.svg
 stage: Getting Started
 topics:
@@ -14,6 +14,10 @@ With Kestra's API First Design, you can build web applications to integrate with
 This can be useful if you want a request from your website to be made and start a workflow execution to process orders. For example, you have an online shop where orders are made and you want Kestra to receive these orders and start processing them.
 
 In this guide, we'll walk through how you can set up Kestra to receive webhooks as well as build a basic JavaScript application with React.js that can make requests.
+
+<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/AMOwx9Mjlh8?si=RYQ6LEkN5NOqwjBZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
 
 ## Configuring CORS
 
@@ -87,7 +91,6 @@ function App() {
           await axios.post('http://localhost:8080/api/v1/executions/webhook/company.team/webhook_example/abcdefg',
               formData).then(response => {
                 console.log(response.data)
-                
               }); 
       } catch (error) {
           console.error('Error:', error);
@@ -145,10 +148,9 @@ function App() {
   const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-          await axios.post('http://localhost:8084/api/v1/executions/webhook/company.team/webhook_example/abcdefg',
+          await axios.post('http://localhost:8080/api/v1/executions/webhook/company.team/webhook_example/abcdefg',
               formData).then(response => {
                 console.log(response.data)
-                
               }); 
       } catch (error) {
           console.error('Error:', error);
@@ -203,10 +205,9 @@ function App() {
   const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-          await axios.post('http://localhost:8084/api/v1/executions/webhook/company.team/webhook_example/abcdefg',
+          await axios.post('http://localhost:8080/api/v1/executions/webhook/company.team/webhook_example/abcdefg',
               formData).then(response => {
                 setResponseData(response.data)
-                
               }); 
       } catch (error) {
           console.error('Error:', error);

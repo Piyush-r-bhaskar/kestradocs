@@ -400,7 +400,7 @@ See the video below for a quick demo of the new feature:
 **Additional log enhancements worth mentioning**:
 - Logs tab is [now faster](https://github.com/kestra-io/kestra/issues/2188) and will no longer freeze the UI page even with a large number of task runs.
 - You can now [log to a file](https://github.com/kestra-io/kestra/issues/4688) in the internal storage using a new `logToFile` core property available on all tasks. This feature is particularly useful for tasks that produce a large amount of logs that would otherwise take up too much space in the database. The same property can be set on triggers.
-- [We've added](https://github.com/kestra-io/kestra/issues/2451) a dedicated [Python logger](https://github.com/kestra-io/libs/blob/main/python/src/kestra.py#L60)  to ensure that all logs emitted by a Python script are [captured](https://github.com/kestra-io/kestra/commit/c58e42ef0dd589af86ae6597bc87c03737c0d913) with the right log levels. Check the [Python Script task](https://kestra.io/plugins/plugin-script-python/tasks/io.kestra.plugin.scripts.python.script) plugin documentation for more details and examples.
+- [We've added](https://github.com/kestra-io/kestra/issues/2451) a dedicated [Python logger](https://github.com/kestra-io/libs/blob/main/python/src/kestra.py#L60)  to ensure that all logs emitted by a Python script are [captured](https://github.com/kestra-io/kestra/commit/c58e42ef0dd589af86ae6597bc87c03737c0d913) with the right log levels. Check the [Python Script task](/plugins/plugin-script-python/io.kestra.plugin.scripts.python.script) plugin documentation for more details and examples.
 
 
 ---
@@ -493,7 +493,7 @@ Using an invalid worker group key in a task leads to task runs being stuck in a 
 
 With the new Worker Groups UI page, worker groups are now treated as API-first objects — they must be created first from the UI, API, CLI, or Terraform before being used in flows. This ensures that worker group keys are valid and exist before they are referenced in tasks.
 
-Check the [Worker Group](https://kestra.io/docs/enterprise/worker-group) documentation to learn how to create and manage worker groups.
+Check the [Worker Group](../docs/06.enterprise/04.scalability/worker-group.md) documentation to learn how to create and manage worker groups.
 
 In short, this new feature improves the way worker groups are managed, reducing the risk of misconfigured flows and providing better visibility into workers' health.
 
@@ -591,7 +591,7 @@ On the Google Cloud front, we’ve added the ability to create and delete **Data
 We’ve also introduced a few new plugins for popular open-source technologies:
 - [MySQL Batch Insert](https://github.com/kestra-io/plugin-jdbc/pull/358) task
 - [NATS KV Store](https://github.com/kestra-io/plugin-nats/issues/46) tasks
-- [MeiliSearch](https://kestra.io/plugins/plugin-meilisearch) tasks
+- [MeiliSearch](/plugins/plugin-meilisearch) tasks
 - [DataHub](https://develop.kestra.io/plugins/plugin-datahub) ingestion task
 - [Rocket.Chat](https://github.com/kestra-io/plugin-notifications/issues/160) notification tasks (thanks [kriko](https://github.com/kriko)!)
 - [MongoDB](https://github.com/kestra-io/plugin-mongodb/pull/15) trigger.

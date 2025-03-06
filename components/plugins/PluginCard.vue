@@ -1,18 +1,20 @@
 <template>
-    <NuxtLink :href="`/plugins/${plugin.name}`">
+    <NuxtLink :href="href">
         <div class="plugin d-flex align-items-center gap-2 bg-dark-2" ref="root" data-bs-toogle="tooltip"
              data-bs-html="true" data-bs-custom-class="plugin-tooltip" :data-bs-original-title="plugin.tooltipContent">
             <div class="icon-content">
                 <img :src="`/icons/${plugin.subGroup || plugin.group}.svg`" :alt="plugin.title">
             </div>
             <h6>
-                {{ pluginTitle(plugin.title) }}
+                {{ plugin.title }}
             </h6>
         </div>
     </NuxtLink>
 </template>
 <script setup>
-    const {$bootstrap} = useNuxtApp()
+    import {slugify} from "@kestra-io/ui-libs"
+
+    const {$bootstrap} = useNuxtApp();
     const props = defineProps({
         plugin: {
             type: Object,
@@ -24,14 +26,9 @@
         },
     });
 
-    const pluginTitle = (title) => {
-        const titleCase = title[0].toUpperCase() + title.slice(1);
-        return titleCase.length > 150 ? titleCase.substring(0, 150) + '...' : titleCase;
-    }
-
-
-
     const root = ref(null);
+
+    const href = `/plugins/${props.plugin.name}${props.plugin.subGroup === undefined ? '' : ('/' + slugify(props.plugin.title))}`
 
     onMounted(() => {
       if (process.client) {
@@ -41,14 +38,14 @@
         });
 
         root.value.addEventListener('mouseenter', () => {
-          const tooltip = $bootstrap.Tooltip.getInstance(root.value);
-          if (tooltip) {
-            removeAllTooltips();
-            tooltip.show();
-            tooltip.tip.addEventListener('mouseleave', () => {
-              tooltip.hide();
-            });
-          }
+            const tooltip = $bootstrap.Tooltip.getInstance(root.value);
+            if (tooltip) {
+                removeAllTooltips();
+                tooltip.show();
+                tooltip.tip.addEventListener('mouseleave', () => {
+                tooltip.hide();
+                });
+            }
         });
       }
     });
@@ -89,6 +86,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            text-transform: capitalize;
             font-size: $font-size-md;
             font-weight: 400;
             margin-bottom: 0;

@@ -12,6 +12,10 @@ image: /blogs/2025-data-engineering-and-ai-trends.png
 
 Many trends that began shaping [data engineering in 2024](https://kestra.io/blogs/2024-01-24-2024-data-engineering-trends) continue to affect data teams in 2025. AI keeps accelerating, and data lakes—along with open table formats—are more popular than ever. Below is our take on the trends influencing data engineering and AI today, and how they impact data professionals.
 
+<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/JMfRRP_2Bs8?si=W1SSyqcwRGw-sfZV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
 ---
 
 ## **1. Generative AI as an Efficiency Driver**
@@ -58,7 +62,7 @@ The **EU AI Act** entered force in August 2024, with strict rules for high-risk 
 
 **1. Fighting Bias at the Source —** AI systems must now document training data origins and implement bias safeguards. Teams need audit trails showing exactly how data moves from raw sources to model inputs.
 
-**2. Granular Control —** [Article 10](https://artificialintelligenceact.eu/article/10/) requires tracking *who* accesses sensitive data and *why*. Apache Iceberg’s [merge/delete capabilities](https://iceberg.apache.org/spec/) can help satisfy GDPR’s right to be forgotten, while integrations with [AWS Lake Formation](https://aws.amazon.com/blogs/big-data/interact-with-apache-iceberg-tables-using-amazon-athena-and-cross-account-fine-grained-permissions-using-aws-lake-formation/) enable column-level permissions. With orchestration tools like [Kestra](https://kestra.io/docs/enterprise), you can add compliance to your data workflows through built-in [custom RBAC](https://kestra.io/docs/enterprise/rbac), [SSO](https://kestra.io/docs/enterprise/sso), [SCIM](https://kestra.io/docs/enterprise/scim), [audit logs](https://kestra.io/docs/enterprise/audit-logs), [outputs](https://kestra.io/docs/workflow-components/outputs) and [metrics](https://kestra.io/docs/workflow-components/tasks/scripts/outputs-metrics) tracking, and [manual approval](https://kestra.io/docs/how-to-guides/pause-resume) features.
+**2. Granular Control —** [Article 10](https://artificialintelligenceact.eu/article/10/) requires tracking *who* accesses sensitive data and *why*. Apache Iceberg’s [merge/delete capabilities](https://iceberg.apache.org/spec/) can help satisfy GDPR’s right to be forgotten, while integrations with [AWS Lake Formation](https://aws.amazon.com/blogs/big-data/interact-with-apache-iceberg-tables-using-amazon-athena-and-cross-account-fine-grained-permissions-using-aws-lake-formation/) enable column-level permissions. With orchestration tools like [Kestra](https://kestra.io/docs/enterprise), you can add compliance to your data workflows through built-in [custom RBAC](https://kestra.io/docs/enterprise/rbac), [SSO](https://kestra.io/docs/enterprise/auth/sso), [SCIM](https://kestra.io/docs/enterprise/scim), [audit logs](https://kestra.io/docs/enterprise/audit-logs), [outputs](https://kestra.io/docs/workflow-components/outputs) and [metrics](https://kestra.io/docs/workflow-components/tasks/scripts/outputs-metrics) tracking, and [manual approval](https://kestra.io/docs/how-to-guides/pause-resume) features.
 
 ---
 

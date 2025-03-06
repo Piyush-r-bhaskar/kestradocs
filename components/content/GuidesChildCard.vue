@@ -23,18 +23,18 @@
                     :showDropdown="showStageDropdown"
                 />
             </div>
-            <div :class="`col-xl col-md-${stage.length > 0 ? 6 : 12} pb-3 pb-xl-0 form-group`">
+            <div :class="`col-xl col-md-${stage?.length > 0 ? 6 : 12} pb-3 pb-xl-0 form-group`">
                 <Magnify />
                 <input type="text" class="form-control bg-dark-2" placeholder="Search guides" v-model="search">
             </div>
             <div class="col-xl-auto col-md-6 pb-3 pb-xl-0">
-                <div class="clear-filter" @click="removeFilter" v-if="stage.length || topic.length || search">
+                <div class="clear-filter" @click="removeFilter" v-if="stage?.length || topic?.length || search">
                     <DeleteOutline/>
                     <span>Clear filters</span>
                 </div>
             </div>
         </div>
-        <NuxtLink :href="item._path" class="col-12 col-md-4 mb-lg-4 mb-2" v-for="item in navigation" :key="item._path">
+        <NuxtLink :href="item.path" class="col-12 col-md-4 mb-lg-4 mb-2" v-for="item in navigation" :key="item.path">
             <div class="card">
                 <div class="card-body">
                     <span class="card-stage" :style="`background-color: ${stages[item.stage]}`">
@@ -60,9 +60,8 @@
     import {hash} from "ohash";
     import {useAsyncData} from "#imports";
     import Magnify from "vue-material-design-icons/Magnify.vue";
-    import ChevronDown from "vue-material-design-icons/ChevronDown.vue";
-    import Close from "vue-material-design-icons/Close.vue"
     import DeleteOutline from "vue-material-design-icons/DeleteOutline.vue"
+    const {public:{CollectionNames}} = useRuntimeConfig()
 
 
     const props = defineProps({
@@ -74,7 +73,6 @@
 
     const route = useRoute();
 
-    const navigation = ref([]);
     const stage = ref([]);
     const topic = ref([]);
     const showStageDropdown = ref(false);
@@ -134,39 +132,33 @@
     }
 
     currentPage = currentPage.endsWith("/") ? currentPage.slice(0, -1) : currentPage;
-    const currentPageDir = currentPage.split('/').reverse()[0];
 
-    const fetchChildDocs = async () => {
-      const {data: result} = await useAsyncData(
-        `ChildCard-${hash(currentPage)}`,
-        () => {
-          let query = queryContent(currentPage + "/").where({ _dir: currentPageDir });
+    function fetchChildDocs(){
+        let query = queryCollection(CollectionNames.docs)
+            .where('path', 'LIKE', `${currentPage}/%`)
+            // only take direct children
+            .where('path', 'NOT LIKE', `${currentPage}/%/%`)
 
-          let queryParams = {};
+        if (Array.isArray(stage.value) && stage.value?.length > 0) {
+            query = query.where('stage', 'IN', stage.value);
+        }
 
-          if (Array.isArray(stage.value) && stage.value.length > 0) {
-            queryParams.stage = { $in: stage.value };
-          }
+        if (Array.isArray(topic.value) && topic.value?.length > 0) {
+            for (const soloTopic of topic.value) {
+                query = query.where('topics', 'LIKE', `%${soloTopic}%`);
+            }
+        }
 
-          if (Array.isArray(topic.value) && topic.value.length > 0) {
-            queryParams.topics = { $contains: topic.value };
-          }
+        if (search.value) {
+            query = query.where('title', 'LIKE', `%${search.value}%`);
+        }
 
-          if (search.value) {
-            queryParams.title = { $icontains: search.value }
-          }
-          query = query.where(queryParams);
-
-          return query.find();
-        });
-      navigation.value = result.value;
-    };
-
-    fetchChildDocs();
-
-    const changeFilter = () => {
-      fetchChildDocs();
+        return query.all();
     }
+
+    const navigation = ref([])
+    navigation.value = await fetchChildDocs()
+
 
     function debounce(func, delay) {
       let timeout;
@@ -180,8 +172,8 @@
       };
     }
 
-    const debouncedFilterPlugins = debounce(() => {
-      fetchChildDocs()
+    const debouncedFilterPlugins = debounce(async () => {
+        navigation.value = await fetchChildDocs()
     }, 1000);
 
     watch([currentPage, search, () => stage.value, () => topic.value], () => {

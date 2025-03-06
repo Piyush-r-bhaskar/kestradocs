@@ -5,8 +5,9 @@
 </template>
 
 <script setup>
-    import {useAsyncData} from "#imports";
     import {hash} from "ohash";
+    import {useAsyncData} from "#imports";
+    const {public:{CollectionNames}} = useRuntimeConfig()
 
     const route = useRoute()
     const config = useRuntimeConfig()
@@ -21,6 +22,10 @@
         }
     })
     let link = props.href
+    if (link.startsWith("https://kestra.io")) {
+        // if the link is not local but should be (like in plugins) we remove the kestra.io part
+        link = link.slice(17)
+    }
     let target = props.target || (link.startsWith("http") ? "_blank" : undefined);
 
 
@@ -34,7 +39,7 @@
         if (!NON_NUXT_CONTENT_RESOLVED_PATHS.some(p => route.path.includes(p))) {
             page = (await useAsyncData(
                 `ProseA-${hash(route.path)}`,
-                () => queryContent(route.path).only("_file").findOne(),
+                () => queryCollection(CollectionNames.docs).path(routePath).select('id').first(),
                 {
                     dedupe: "defer"
                 }
@@ -42,7 +47,7 @@
         }
 
         // If we are on an index page, we want to resolve relative paths starting from our current route
-        if (page?.value?._file?.includes('index.md') || !page) {
+        if (page?.value?.id?.endsWith('index.md') || !page) {
             absolutePath = absolutePath + "/";
         }
 

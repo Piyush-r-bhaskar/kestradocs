@@ -16,7 +16,7 @@ They can range from data processing, machine learning, and data analytics to bat
 
 While these tasks are essential for business operations, they can be resource-intensive and time-consuming while requiring specific hardware. To execute these tasks efficiently, you need a robust and scalable infrastructure that can handle the workload effectively.
 
-Kestra offers various task execution solutions such as Docker, local processes, and Kubernetes. See [Task Runners](../06.enterprise/task-runners.md) for more details.
+Kestra offers various task execution solutions such as Docker, local processes, and Kubernetes. See [Task Runners](../06.enterprise/04.scalability/task-runners.md) for more details.
 
 In this guide, we will focus on executing long-running tasks on **Kubernetes** using Kestra.
 
@@ -26,7 +26,7 @@ As an exmample, we will use a [dbt job](https://docs.getdbt.com/docs/running-a-d
 
 ## Schedule task in a Kubernetes pod using podCreate
 
-Kestra's [podCreate](/plugins/plugin-kubernetes/tasks/io.kestra.plugin.kubernetes.podcreate) task allows you to launch a Kubernetes pod directly by providing the complete Kubernetes YAML configuration as an input. This gives you full control over the pod’s specifications, such as CPU, memory, image, or node selector.
+Kestra's [podCreate](/plugins/plugin-kubernetes/io.kestra.plugin.kubernetes.podcreate) task allows you to launch a Kubernetes pod directly by providing the complete Kubernetes YAML configuration as an input. This gives you full control over the pod’s specifications, such as CPU, memory, image, or node selector.
 
 Here is an example of a dbt job that runs on Kubernetes using Kestra:
 
@@ -100,7 +100,7 @@ At the end of the execution, the pod is deleted, and the logs remain available i
 
 ## Embrace Kestra versality with Kubernetes Task Runners
 
-While podCreate provides deep control, it takes aways all the benefits of Kestra's rich plugins ecosystem, [dbt plugin](https://kestra.io/plugins/plugin-dbt/tasks/cli/io.kestra.plugin.dbt.cli.dbtcli) in this case. Also it can be cumbersome to manage complex Kubernetes pod YAML specification for each task, especially when you have multiple commands to run.
+While podCreate provides deep control, it takes aways all the benefits of Kestra's rich plugins ecosystem, [dbt plugin](/plugins/plugin-dbt/cli/io.kestra.plugin.dbt.cli.dbtcli) in this case. Also it can be cumbersome to manage complex Kubernetes pod YAML specification for each task, especially when you have multiple commands to run.
 
 To leverage the best of both worlds, Kestra’s Task Runners allow you to define workflows that benefit from Kestra's plugin system, enabling you to use familiar plugins while still leveraging the flexibility of Kubernetes to secure and scale the tasks effectively.
 

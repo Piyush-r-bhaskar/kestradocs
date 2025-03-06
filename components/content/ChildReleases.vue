@@ -1,6 +1,6 @@
 <template>
     <div class="row card-group card-centered mb-2">
-        <NuxtLink :href="item._path" class="col-12 col-md-10 mb-4" v-for="item in navigation" :key="item._path">
+        <NuxtLink :href="item.path" class="col-12 col-md-10 mb-4" v-for="item in navigation" :key="item.path">
             <div class="card">
                 <div class="card-body">
                     <div>
@@ -17,6 +17,7 @@
 <script setup>
     import {hash} from "ohash";
     import {useAsyncData} from "#imports";
+    const {public:{CollectionNames}} = useRuntimeConfig()
 
     const props = defineProps({
         pageUrl: {
@@ -39,6 +40,6 @@
 
     const {data: navigation} = await useAsyncData(
         `ChildReleases-${hash(currentPage)}`,
-        () => queryContent(`${currentPage}/`).where({ release: { $exists: true } }).sort({ release: -1 }).find()
+        () => () => queryCollection(CollectionNames.docs).where('release', 'IS', `NotNull`).sort("release", "DESC").all()
     );
 </script>

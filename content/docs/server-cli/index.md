@@ -17,6 +17,10 @@ Kestra leverages five different server components. The `kestra server` command a
 
 * `--skip-executions`: the list of execution identifiers to skip. Use it only for troubleshooting e.g. when an execution cannot be processed by Kestra.
 
+::alert{type="info"}
+For more information on troubleshooting CLI options, see the dedicated [Troubleshooting](../09.administrator-guide/16.troubleshooting.md#unprocessable-execution) page.
+::
+
 ### Indexer
 
 `./kestra server indexer`
@@ -32,7 +36,7 @@ Kestra leverages five different server components. The `kestra server` command a
 **Options:**
 
 * `-t` or `--thread`: the number of threads that can handle tasks at the same time. By default, the worker will start 2 threads per CPU core available.
-* `-g` or `--worker-group`: the key of the worker group if using [Worker Group (EE)](../06.enterprise/worker-group.md).
+* `-g` or `--worker-group`: the key of the worker group if using [Worker Group (EE)](../06.enterprise/04.scalability/worker-group.md).
 
 ### Webserver
 

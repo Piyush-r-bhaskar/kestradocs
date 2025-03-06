@@ -2,6 +2,7 @@
 
 html {
     height: 100%;
+    scroll-padding-top: var(--top-bar-height);
 }
 
 body {
@@ -59,17 +60,6 @@ h1 {
 
 h2 {
     font-weight: 800
-}
-
-// Offsets anchor headers to scroll past the top-bar
-.container {
-    h1, h2, h3, h4, h5, h6 {
-        &[id] {
-            --anchor-offset: calc(var(--top-bar-height) + var(--spacer));
-            margin-top: calc(var(--anchor-offset) * -1);
-            padding-top: var(--anchor-offset);
-        }
-    }
 }
 
 main {
@@ -546,7 +536,26 @@ blockquote.blockquote {
         text-align: left !important;
         max-height: 20rem;
         overflow: auto;
-        background-color: var(--bs-body-color);
+        background-color: rgb(0,0,0,.6);
+        backdrop-filter: blur(4px);
+        color: var(--kestra-io-token-color-white);
+        border: 1px solid var(--kestra-io-token-color-border-primary);
+        border-radius: 1em;
+        max-width: 80ch;
+        padding: 1rem;
+
+        p:not(li p) {
+            margin-bottom: 0;
+            line-height: 1.625rem;
+        }
+
+        li::marker, a {
+            color: var(--kestra-io-token-text-link-default);
+        }
+
+        li {
+            line-height: 1.25rem;
+        }
 
         &::-webkit-scrollbar {
             width: 2px;
@@ -561,6 +570,9 @@ blockquote.blockquote {
             background: var(--bs-primary);
             border-radius: 0px;
         }
+    }
+    .tooltip-arrow {
+        --bs-tooltip-bg: var(--kestra-io-token-color-border-primary);
     }
 }
 

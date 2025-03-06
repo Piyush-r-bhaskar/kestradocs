@@ -15,15 +15,15 @@
                         <div class="card-stories-info">
                             <div class="info-item">
                                 <img src="/stories/icons/multiple-checkbox.svg" alt="right icons" />
-                                <ContentRendererMarkdown :value="kpi1Content" class="item-content"/>
+                                <ContentRenderer :value="kpi1Content" class="item-content"/>
                             </div>
                             <div class="info-item">
                                 <img src="/stories/icons/multiple-checkbox.svg" alt="right icons" />
-                                <ContentRendererMarkdown :value="kpi2Content" class="item-content" />
+                                <ContentRenderer :value="kpi2Content" class="item-content" />
                             </div>
                             <div class="info-item">
                                 <img src="/stories/icons/multiple-checkbox.svg" alt="right icons" />
-                                <ContentRendererMarkdown :value="kpi3Content" class="item-content" />
+                                <ContentRenderer :value="kpi3Content" class="item-content" />
                             </div>
                         </div>
                         <span class="author">
@@ -44,7 +44,7 @@
 </template>
 
 <script setup>
-    import {slugify} from "~/utils/url.js";
+    import {slugify} from "@kestra-io/ui-libs";
 
     const props = defineProps({
         story: {

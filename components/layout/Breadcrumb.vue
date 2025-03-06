@@ -1,8 +1,8 @@
 <template>
     <div class="slug">
-        <span :class="{ first: index === 0 }" v-for="(item, index) in breadcrumb()" :key="item">
+        <span :class="{ first: index === 0 }" v-for="(item, index) in breadcrumb" :key="item">
             <NuxtLink :href="breadcrumbLinkExist(item, index) ? breadcrumbLink(item, index) : ''" class="link">
-                {{ pageNames[item] ? pageNames[item] : item }}
+                {{ item !== "docs" && pageNames[item] ? pageNames[item] : item }}
             </NuxtLink>
         </span>
     </div>
@@ -27,17 +27,19 @@ export default {
         }
     },
     methods: {
-        breadcrumb() {
-            let breadcrumbs = [...new Set(this.slug.split("/")
-                .filter(r => r !== ""))].slice(0, -1);
-            return breadcrumbs.length > 0 ? breadcrumbs : ['docs']
-        },
-        breadcrumbLink(item, index) {
-            return "/" + this.breadcrumb().slice(0, index + 1).join("/")
+        breadcrumbLink(_item, index) {
+            return "/" + this.breadcrumb.slice(0, index + 1).join("/")
         },
         breadcrumbLinkExist(item, index) {
             return this.pageList?.includes(this.breadcrumbLink(item, index))
         }
+    },
+    computed: {
+        breadcrumb() {
+            let breadcrumbs = [...new Set(this.slug.split("/")
+                .filter(r => r !== ""))].slice(0, -1);
+            return (breadcrumbs && breadcrumbs.length > 0) ? breadcrumbs : ['docs']
+        },
     }
 }
 </script>
@@ -48,7 +50,7 @@ export default {
 .slug {
     white-space: pre-wrap;
     width: 100%;
-    max-width: calc($spacer * 43.7);
+    max-width: 45.8rem;;
     font-size: $font-size-sm;
     font-family: $font-family-sans-serif;
     font-weight: 400;
@@ -81,6 +83,10 @@ export default {
             color: #CDD5EF !important;
 
         }
+    }
+
+    .link{
+        text-transform: capitalize;
     }
 }
 </style>

@@ -9,7 +9,7 @@ author:
 image: /blogs/2023-09-28-release-0-12-subflow-logs-docker-builds-aws-lambda.png
 ---
 
-We’re happy to announce Kestra 0.12.0. This release significantly improves **subflow** topology and logs, making navigating complex workflows a breeze. We've also added [Docker](https://kestra.io/plugins/plugin-docker) and [SurrealDB](https://kestra.io/plugins/plugin-surrealdb) plugins, and **new AWS integrations**, including [AWS Lambda](https://kestra.io/plugins/plugin-aws/tasks/lambda/io.kestra.plugin.aws.lambda.invoke), [Amazon EventBridge](https://kestra.io/plugins/plugin-aws/tasks/eventbridge/io.kestra.plugin.aws.eventbridge.putevents), and [Amazon Kinesis Data Streams](https://kestra.io/plugins/plugin-aws/tasks/kinesis/io.kestra.plugin.aws.kinesis.putrecords).
+We’re happy to announce Kestra 0.12.0. This release significantly improves **subflow** topology and logs, making navigating complex workflows a breeze. We've also added [Docker](/plugins/plugin-docker) and [SurrealDB](/plugins/plugin-surrealdb) plugins, and **new AWS integrations**, including [AWS Lambda](/plugins/plugin-aws/lambda/io.kestra.plugin.aws.lambda.invoke), [Amazon EventBridge](/plugins/plugin-aws/eventbridge/io.kestra.plugin.aws.eventbridge.putevents), and [Amazon Kinesis Data Streams](/plugins/plugin-aws/kinesis/io.kestra.plugin.aws.kinesis.putrecords).
 
 Here's a list of all enhancements in this release:
 
@@ -281,11 +281,11 @@ Apart from new features and integrations, we've also made several improvements t
 
 This release also adds several new features to the Enterprise Edition, including:
 
-🔹 [Azure Secrets Manager](https://kestra.io/docs/administrator-guide/configuration/enterprise-edition/secrets/azure-key-manager) allows you to store your Kestra secrets in Azure Key Vault.
+🔹 [Azure Key Vault](../docs/configuration/index.md#azure-key-vault) allows you to store your Kestra secrets in Azure Key Vault.
 
-🔹 [AWS Secrets Manager](https://kestra.io/docs/administrator-guide/configuration/enterprise-edition/secrets/aws-secrets-manager) allows you to store your Kestra  secrets in AWS Secrets Manager.
+🔹 [AWS Secrets Manager](../docs/configuration/index.md#aws-secret-manager) allows you to store your Kestra  secrets in AWS Secrets Manager.
 
-🔹 [Google Secrets Manager](https://kestra.io/docs/administrator-guide/configuration/enterprise-edition/secrets/google-secrets-manager) allows you to store your Kestra secrets in Google Secrets Manager.
+🔹 [Google Secrets Manager](../docs/configuration/index.md#google-secret-manager) allows you to store your Kestra secrets in Google Secrets Manager.
 
 Apart from those changes, the [task runs page](https://github.com/kestra-io/kestra-ee/issues/407) now also displays execution labels and attempt numbers.
 

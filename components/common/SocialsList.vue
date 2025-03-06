@@ -34,6 +34,12 @@
                     </a>
                 </li>
                 <li>
+                    <a class="text-white" href="https://web-cdn.bsky.app/profile/kestra.io" target="_blank">
+                        <BlueSky />
+                        BlueSky
+                    </a>
+                </li>
+                <li>
                     <a class="text-white" href="https://www.linkedin.com/company/kestra" target="_blank">
                         <linkedin />
                         LinkedIn
@@ -49,6 +55,7 @@
     import Github from "vue-material-design-icons/Github.vue";
     import Linkedin from "vue-material-design-icons/Linkedin.vue";
     import Twitter from "../components/icons/TwitterXIcon.vue";
+    import BlueSky from "../components/icons/BlueSkyIcon.vue";
 
     const props = defineProps({
         page: {
@@ -58,10 +65,10 @@
     });
 
     const editLink = computed(() => {
-        if (!props.page._file) {
+        if (!props.page.stem || !props.page.extension) {
             return false;
         }
-        return `https://github.com/kestra-io/kestra.io/edit/main/content/${props.page._file}`;
+        return `https://github.com/kestra-io/kestra.io/edit/main/content/${props.page.stem}.${props.page.extension}`;
     });
 </script>
 <style lang="scss" scoped>
