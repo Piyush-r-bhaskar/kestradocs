@@ -10,6 +10,21 @@ body {
     min-height: 100%;
     position: relative;
     background-color: #0a0a0c;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $black-1;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        background: $black-5;
+    }
 }
 .nuxt-loading-indicator {
     background: linear-gradient(90deg, #E151F7 65.38%, #5C47F5 82.43%)!important;
