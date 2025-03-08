@@ -40,15 +40,15 @@
                     <span class="card-stage" :style="`background-color: ${stages[item.stage]}`">
                         {{item.stage}}
                     </span>
-                    <div class="card-icon">
-                        <img :src="item.icon" :alt="item.title" width="50px" height="50px"/>
+                    <div class="card-icon p-4">
+                        <img :src="item.icon" :alt="item.title" width="30px" height="30px"/>
                     </div>
                     <div>
-                        <h4 class="card-title">{{ item.title }}</h4>
-                        <p class="card-text">{{item.description}}</p>
+                        <h4 class="card-title fs-4 lh-sm">{{ item.title }}</h4>
+                        <p class="card-text fw-normal">{{item.description}}</p>
                     </div>
-                    <div class="topics">
-                        <span v-for="(topic, index) in item.topics" :key="index" class="topic-item">{{topic}}</span>
+                    <div class="topics d-flex flex-wrap row-gap-2 mt-3">
+                        <span v-for="(topic, index) in item.topics" :key="index" class="topic-item">{{topic}}</span> <span v-for="(topic, index) in item.topics" :key="index" class="topic-item">{{topic}}</span>
                     </div>
                 </div>
             </div>
@@ -190,22 +190,22 @@
     }
     .card-title {
         font-size: calc($font-size-base * 1.5);;
-        line-height: calc($font-size-base * 2.25);;
+        line-height: calc($font-size-base * 2.25);
         font-weight: 600;
     }
 
     .card-text {
-        font-size: $font-size-sm !important;
+        font-size: $font-size-xs !important;
         line-height: 1rem !important;
         color: $white-3;
     }
     .card-stage {
         border-radius: 4px;
         height: 28px;
-        padding: 4px 8px;
+        padding: 4px 6px;
         color: $white;
         font-weight: 400;
-        font-size: $font-size-xs;
+        font-size: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -220,7 +220,7 @@
             background-color: #3D3D3F;
             color: #FFFFFF;
             font-weight: 400;
-            font-size: $font-size-xs;
+            font-size: 10px;
             height: 28px;
             padding: 4px 8px;
             border-radius: 4px;
@@ -232,9 +232,10 @@
     }
 
     .card-icon {
+        margin-top: -8px;
         border: 2px solid $black-6;
-        width: 83px;
-        height: 64px;
+        width: 55px;
+        height: 45px;
         float: unset;
         background-color: #111113;
         img {
