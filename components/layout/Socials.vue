@@ -10,7 +10,7 @@
                 <Twitter />
             </a>
         </li>
-        <li>
+        <li class="list-inline-item ml-1">
             <a href="https://web-cdn.bsky.app/profile/kestra.io" title="BlueSky" target="_blank">
                 <BlueSky />
             </a>
@@ -25,7 +25,7 @@
                 <Youtube />
             </a>
         </li>
-        <li class="list-inline-item ml-1">
+        <li class="list-inline-item">
             <a href="https://kestra.io/slack" title="Slack" target="_blank">
                 <Slack title="" />
             </a>
